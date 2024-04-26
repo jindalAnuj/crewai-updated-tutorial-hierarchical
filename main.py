@@ -1,11 +1,17 @@
+import os
+from dotenv import load_dotenv,dotenv_values
 from crewai import Crew, Process
 from langchain_openai import ChatOpenAI
 from agents import AINewsLetterAgents
 from tasks import AINewsLetterTasks
 from file_io import save_markdown
 
-from dotenv import load_dotenv
-load_dotenv()
+try:
+    load_dotenv('.env')
+    # config = dotenv_values()
+    # print("Config", config)
+except Exception as e:
+    print("Error loading .env file:", e)
 
 # Initialize the agents and tasks
 agents = AINewsLetterAgents()
